@@ -10,7 +10,7 @@ public class Arreglo {
 		n = new int[10];
 		indice = 0;
 	}
-	//  Operaciones públicas básicas
+	//  Operaciones pÃºblicas bÃ¡sicas
 	public int tamanio() {
 		return indice;
 	}
@@ -18,7 +18,29 @@ public class Arreglo {
 		return n[i];
 	}
 	public void adicionarYreubicar(int numero) {
-
+	    if (indice == n.length) {
+	        ampliarArreglo();
+	    }
+	    n[indice] = numero;
+	    indice++;
+	
+	    int inicio = 0;
+	    int fin = indice - 1;
+	    
+	    while (inicio < fin) {
+	        while (inicio < fin && n[inicio] % 2 == 0) {
+	            inicio++;
+	        }
+	        while (inicio < fin && n[fin] % 2 != 0) {
+	            fin--;
+	        }
+	        if (inicio < fin) {
+	            // Intercambiar nÃºmeros par e impar
+	            int temp = n[inicio];
+	            n[inicio] = n[fin];
+	            n[fin] = temp;
+	        }
+	    }
 	}
 	//  Operaciones privadas
 	private void ampliarArreglo() {
